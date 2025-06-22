@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анна и Алексей | Свадьба</title>
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #fff9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .header {
+            background: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        .header h1 {
+            font-size: 4em;
+            margin: 0;
+            z-index: 1;
+            font-weight: 400;
+        }
+        .header h2 {
+            font-size: 2em;
+            z-index: 1;
+            font-weight: 300;
+            margin-top: 10px;
+        }
+        .date {
+            font-size: 1.5em;
+            margin: 20px 0;
+            z-index: 1;
+        }
+        .container {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section h3 {
+            font-size: 2em;
+            color: #d4a373;
+        }
+        .rsvp-button {
+            background: #d4a373;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            background: #333;
+            color: white;
+            padding: 20px;
+            margin-top: 50px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>Анна & Алексей</h1>
+        <h2>Мы женимся!</h2>
+        <div class="date">15 сентября 2024 года</div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h3>Добро пожаловать!</h3>
+            <p>Дорогие друзья и родные, мы рады пригласить вас на нашу свадьбу, которая состоится в прекрасном месте. Ваше присутствие сделает наш день еще более особенным!</p>
+        </div>
+
+        <div class="section">
+            <h3>Детали мероприятия</h3>
+            <p><strong>Дата:</strong> 15 сентября 2024 года</p>
+            <p><strong>Место:</strong> Усадьба "Белая Роза", Московская область</p>
+            <p><strong>17:00</strong> – Церемония</p>
+            <p><strong>19:00</strong> – Банкет</p>
+        </div>
+
+        <div class="section">
+            <h3>Подтвердите присутствие</h3>
+            <p>Пожалуйста, ответьте до 1 августа 2024 года.</p>
+            <button class="rsvp-button">Я приду!</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>С любовью, Анна и Алексей</p>
+    </div>
+</body>
+</html>
+<div class="section">
+    <h3>Подтвердите присутствие</h3>
+    <p>Пожалуйста, заполните форму до 1 августа 2024 года.</p>
+    
+    <form id="rsvp-form" action="https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbym4z03CeYO1Ws6IVU5uPTh998RbOaAnWaVtNZwnj79OgPqhbw2I-GRAqWuelUnew2jcQ/exec/exec" method="POST">
+        <input type="text" name="name" placeholder="Ваше имя" required style="padding: 10px; width: 80%; max-width: 300px; margin: 10px 0; border: 1px solid #d4a373; border-radius: 5px;">
+        <br>
+        <textarea name="drinks" placeholder="Какие напитки вы предпочитаете? (алкогольные/безалкогольные)" style="padding: 10px; width: 80%; max-width: 300px; height: 100px; margin: 10px 0; border: 1px solid #d4a373; border-radius: 5px;"></textarea>
+        <br>
+        <button type="submit" class="rsvp-button">Отправить</button>
+    </form>
+    <p id="form-success" style="display: none; color: green;">Спасибо! Ваш ответ сохранён.</p>
+</div>
+
+<script>
+    document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        fetch(e.target.action, {
+            method: 'POST',
+            body: new FormData(e.target)
+        }).then(() => {
+            document.getElementById('form-success').style.display = 'block';
+            e.target.reset();
+        });
+    });
+</script>
